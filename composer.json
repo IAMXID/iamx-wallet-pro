@@ -1,0 +1,26 @@
+{
+    "name": "iamxid/iamx-wallet-pro",
+    "description": "This package allows users to use the IAMX wallet to authenticate into a laravel project and sign, verify, encode and decode data using the IAMX identity wallet.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jochen Heinz",
+            "email": "support@cardano-blockhouse.de"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "IAMXID\\IamxWalletPro\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "IAMXID\\IamxWalletPro\\IamxWalletProServiceProvider"
+            ]
+        }
+    }
+}
