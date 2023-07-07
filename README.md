@@ -1,5 +1,5 @@
 # iamx-wallet-pro
-IAMX wallet pro is a Laravel package to login to a laravel application using the IAMX identity wallet and sign, verify, encode and decode data using the IAMX identity wallet.
+IAMX wallet pro is a Laravel package to login to a laravel application using the IAMX identity wallet and sign, verify, encrypt and decrypt data using the IAMX identity wallet.
 
 - [IAMX-wallet-pro](#iamx-wallet-pro)
     - [Installation](#Installation)
