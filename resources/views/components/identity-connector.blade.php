@@ -12,15 +12,15 @@
 
         function connectIdentity() {
             axios.get("/iamx/get_identity_scope")
-            .then((response) => {
-                window.IAMX.connect(response.data);
-            });
+                .then((response) => {
+                    window.IAMX.connect(response.data);
+                });
         }
 
         function disconnectIdentity() {
             axios.get("/iamx/disconnect_identity")
                 .then((response) => {
-                    document.getElementById("iamxLoginButton").innerHTML="Login using IAMX Identity";
+                    document.getElementById("iamxLoginButton").innerHTML = "Login using IAMX Identity";
                     document.getElementById("iamxLoginButton").onclick = connectIdentity;
                 });
         }
@@ -42,10 +42,13 @@
                     axios.post("/iamx/connect_identity", {
                         data: event.data.data,
                     })
-                    .then( response => {
-                        document.getElementById("iamxLoginButton").innerHTML="Logout";
-                        document.getElementById("iamxLoginButton").onclick = disconnectIdentity;
-                    });
+                        .then(response => {
+                            document.getElementById("iamxLoginButton").innerHTML = "Logout";
+                            document.getElementById("iamxLoginButton").onclick = disconnectIdentity;
+                            if (response.data.redirect_url) {
+                                window.location.href = response.data.redirect_url;
+                            }
+                        });
                 }
             }
         });

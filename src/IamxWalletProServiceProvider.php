@@ -7,6 +7,7 @@ use IAMXID\IamxWalletPro\View\Components\IdentityDecryptData;
 use IAMXID\IamxWalletPro\View\Components\IdentityEncryptData;
 use IAMXID\IamxWalletPro\View\Components\IdentitySignData;
 use IAMXID\IamxWalletPro\View\Components\IdentityVerifyData;
+use IAMXID\IamxWalletPro\View\Components\IdentityVerifyDID;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -53,6 +54,7 @@ class IamxWalletProServiceProvider extends ServiceProvider
         Blade::component('iamxwalletpro-identity-connector', IdentityConnector::class);
         Blade::component('iamxwalletpro-identity-sign', IdentitySignData::class);
         Blade::component('iamxwalletpro-identity-verify', IdentityVerifyData::class);
+        Blade::component('iamxwalletpro-identity-verify-did', IdentityVerifyDID::class);
         Blade::component('iamxwalletpro-identity-encrypt', IdentityEncryptData::class);
         Blade::component('iamxwalletpro-identity-decrypt', IdentityDecryptData::class);
     }

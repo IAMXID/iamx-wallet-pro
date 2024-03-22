@@ -1,5 +1,7 @@
 # iamx-wallet-pro
-IAMX wallet pro is a Laravel package to login to a laravel application using the IAMX identity wallet and sign, verify, encrypt and decrypt data using the IAMX identity wallet.
+
+IAMX wallet pro is a Laravel package to login to a laravel application using the IAMX identity wallet and sign, verify,
+encrypt and decrypt data using the IAMX identity wallet.
 
 - [IAMX-wallet-pro](#iamx-wallet-pro)
     - [Installation](#Installation)
@@ -10,8 +12,8 @@ IAMX wallet pro is a Laravel package to login to a laravel application using the
 
 ## Installation
 
-
 Install the current version of the `iamxid/iamx-wallet-pro` package via composer:
+
 ```sh
     composer require iamxid/iamx-wallet-pro:dev-main
 ```
@@ -19,22 +21,33 @@ Install the current version of the `iamxid/iamx-wallet-pro` package via composer
 ## Configuration
 
 Publish the migration file:
+
 ```sh
     php artisan vendor:publish --provider="IAMXID\IamxWalletPro\IamxWalletProServiceProvider" --tag="migrations"
 ```
 
 Run the migration:
+
 ```sh
     php artisan migrate
 ```
 
 Add the scope to the .env file. Example:
+
 ```
 IAMX_IDENTITY_SCOPE={"did":"","person":{},"vUID":{},"address":{},"email":{},"mobilephone":{}}
 ```
 
+Add the redirect URL to the .env file. Example:
+
+```
+IAMX_IDENTITY_CONNECT_REDIRECT_URL="/page_to_load_after_login"
+```
+
 ## Usage
+
 Add the attribute "iamx_vuid" to the $fillable array in /app/Models/User.php
+
 ```php
     protected $fillable = [
         'name',
@@ -43,7 +56,9 @@ Add the attribute "iamx_vuid" to the $fillable array in /app/Models/User.php
         'iamx_vuid'
     ];
 ```
+
 Add the HasDID trait to the user model in /app/Models/User.php
+
 ```php
 use IAMXID\IamxWalletPro\Traits\HasDID;
 
@@ -53,27 +68,35 @@ class User extends Model
     ...
 }
 ```
-Place the component ```<x-iamxwalletpro-identity-connector />``` in your blade template to insert the wallet connect snippet.
+
+Place the component ```<x-iamxwalletpro-identity-connector />``` in your blade template to insert the wallet connect
+snippet.
 
 Place the component ```<x-iamxwalletpro-identity-sign />``` in your blade template to insert the sign data snippet.
 
 Place the component ```<x-iamxwalletpro-identity-verify />``` in your blade template to insert the verify data snippet.
 
-Place the component ```<x-iamxwalletpro-identity-encrypt />``` in your blade template to insert the encrypt data snippet. 
+Place the component ```<x-iamxwalletpro-identity-encrypt />``` in your blade template to insert the encrypt data
+snippet.
 
-Place the component ```<x-iamxwalletpro-identity-decrypt />``` in your blade template to insert the decrypt data snippet.
+Place the component ```<x-iamxwalletpro-identity-decrypt />``` in your blade template to insert the decrypt data
+snippet.
 
-    
+Style the connect button and the container in your css file using the classes ```btn-identity-connect```
+and ```container-identity-connect```.
 
-Style the connect button and the container in your css file using the classes ```btn-identity-connect``` and ```container-identity-connect```.
+Style the sign data button, the container and the input fields in your css file using the
+classes ```btn-identity-signData```,  ```container-identity-signData``` and ```input-label-signData```.
 
-Style the sign data button, the container and the input fields in your css file using the classes ```btn-identity-signData```,  ```container-identity-signData``` and ```input-label-signData```.
+Style the verify data button, the container and the input fields in your css file using the
+classes ```btn-identity-verifyData```,  ```container-identity-verifyData``` and ```input-label-verifyData```.
 
-Style the verify data button, the container and the input fields in your css file using the classes ```btn-identity-verifyData```,  ```container-identity-verifyData``` and ```input-label-verifyData```.
+Style the encrypt data button, the container and the input fields in your css file using the
+classes ```btn-identity-encryptData```,  ```container-identity-encryptData``` and ```input-label-encryptData```.
 
-Style the encrypt data button, the container and the input fields in your css file using the classes ```btn-identity-encryptData```,  ```container-identity-encryptData``` and ```input-label-encryptData```.
+Style the decrypt data button, the container and the input fields in your css file using the
+classes ```btn-identity-decryptData```,  ```container-identity-decryptData``` and ```input-label-decryptData```.
 
-Style the decrypt data button, the container and the input fields in your css file using the classes ```btn-identity-decryptData```,  ```container-identity-decryptData``` and ```input-label-decryptData```.
 ```
 @tailwind base;
 @tailwind components;
@@ -152,23 +175,29 @@ Style the decrypt data button, the container and the input fields in your css fi
 
 @tailwind utilities;
 ```
+
 ## Examples
+
 Use the functions in the HasDID trait in your application to access the IAMX wallet attributes:
 
 Fetch single attributes:
+
 ```php
 $user = User::find(1);
 $street = $user->getDIDAttribute('address', 'street', $user->id);
 $housenr = $user->getDIDAttribute('address', 'housenr', $user->id);
 $zip = $user->getDIDAttribute('address', 'zip', $user->id);
 ```
+
 Fetch all attributes of a category:
+
 ```php
 $user = User::find(1);
 $allCategoryValues = $user->getDIDCategoryValues('address', $user->id);
 ```
 
 Fetch all available attributes:
+
 ```php
 $user = User::find(1);
 $allValues = $user->getAllDIDValues($user->id);
